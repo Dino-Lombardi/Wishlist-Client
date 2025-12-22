@@ -11,4 +11,19 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
+  
+   <!-- Servlets -->
+   
+  <servlet>
+	<servlet-name>CreateUserAccount</servlet-name>
+	<servlet-class>be.wishlist.servlets.CreateUserAccount</servlet-class>
+  </servlet>
+  
+  <!-- Servlet Mappings -->
+  
+  <servlet-mapping>
+	<servlet-name>CreateUserAccount</servlet-name>
+	<url-pattern>/CreateUserAccount</url-pattern>
+	<url-pattern>/Inscription</url-pattern>
+  </servlet-mapping>
 </web-app>
