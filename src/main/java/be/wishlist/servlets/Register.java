@@ -8,21 +8,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import be.wishlist.javabeans.User;
 
 
-public class CreateUserAccount extends HttpServlet {
+public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
    
-    public CreateUserAccount() {
+    public Register() {
     	super();
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/JSP/createUserAccount.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
 	}
 
 	
@@ -39,15 +40,17 @@ public class CreateUserAccount extends HttpServlet {
         
         if(messages.isEmpty()) {
 			if(user.insert()) {
-				response.sendRedirect(request.getContextPath() + "/Login");
+				HttpSession session = request.getSession();
+				session.setAttribute("successMessage", "Inscription réussie !");
+				response.sendRedirect(request.getContextPath() + "/login");
 			} else {
 				messages.put("error", "Un problème est survenu lors de la création de votre compte. Veuillez réessayer.");
 		        request.setAttribute("messages", messages);
-				request.getRequestDispatcher("/WEB-INF/JSP/createUserAccount.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
 			}
 		} else {
 	        request.setAttribute("messages", messages);
-			request.getRequestDispatcher("/WEB-INF/JSP/createUserAccount.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
         }
 
 	}

@@ -45,8 +45,39 @@ public class UserDAO extends DAO<User>{
 	}
 	
 	public User find(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ClientResponse res;
+		User user = null;
+		
+		try {
+			JSONObject loginuserJSON = new JSONObject();
+			loginuserJSON.put("username", username);
+			loginuserJSON.put("password",  password);
+			
+			res = getResource()
+					.path("user")
+					.path("login")
+					.header("Content-Type", "application/json")
+					.post(ClientResponse.class, loginuserJSON.toString());
+			
+			if (res.getStatus() == 200) {
+				JSONObject userJSON = new JSONObject(res.getEntity(String.class));
+				int iduser = userJSON.getInt("idUser");
+				String firstname = userJSON.getString("firstname");
+				String lastname = userJSON.getString("lastname");
+				String usrname = userJSON.getString("username");
+				String pwd = userJSON.getString("password");
+				
+				user = new User(iduser, firstname, lastname, usrname, pwd);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Exception dans UserDAO - find pour le login");
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
+		return user;
 	}
 
 	@Override
