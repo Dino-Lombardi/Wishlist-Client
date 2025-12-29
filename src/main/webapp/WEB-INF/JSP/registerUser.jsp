@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Map" %>
+<%
+    Map<String, String> messages = (Map<String, String>) request.getAttribute("messages");
+    
+    String firstnameParam = request.getParameter("firstname");
+    String lastnameParam = request.getParameter("lastname");
+    String usernameParam = request.getParameter("username");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,64 +30,86 @@
                             <div class="form-group">
                                 <label for="firstname">Prénom</label>
                                 <input type="text" 
-                                       class="form-control ${not empty messages.firstname ? 'is-invalid' : ''}" 
+                                       class="form-control <%= messages != null && messages.containsKey("firstname") ? "is-invalid" : "" %>" 
                                        id="firstname" 
                                        name="firstname" 
-                                       value="${param.firstname}" 
+                                       value="<%= firstnameParam != null ? firstnameParam : "" %>" 
                                        required>
-                                ${not empty messages.firstname ? 
-                                    '<div class="invalid-feedback">' += messages.firstname += '</div>' : ''}
+                                <% if (messages != null && messages.containsKey("firstname")) { %>
+                                    <div class="invalid-feedback">
+                                        <%= messages.get("firstname") %>
+                                    </div>
+                                <% } %>
                             </div>
                             
                             <!-- Nom de famille -->
                             <div class="form-group">
                                 <label for="lastname">Nom de famille</label>
                                 <input type="text" 
-                                       class="form-control ${not empty messages.lastname ? 'is-invalid' : ''}" 
+                                       class="form-control <%= messages != null && messages.containsKey("lastname") ? "is-invalid" : "" %>" 
                                        id="lastname" 
                                        name="lastname" 
-                                       value="${param.lastname}" 
+                                       value="<%= lastnameParam != null ? lastnameParam : "" %>" 
                                        required>
-                                ${not empty messages.lastname ? 
-                                    '<div class="invalid-feedback">' += messages.lastname += '</div>' : ''}
+                                <% if (messages != null && messages.containsKey("lastname")) { %>
+                                    <div class="invalid-feedback">
+                                        <%= messages.get("lastname") %>
+                                    </div>
+                                <% } %>
                             </div>
                             
                             <!-- Nom d'utilisateur -->
                             <div class="form-group">
                                 <label for="username">Nom d'utilisateur</label>
                                 <input type="text" 
-                                       class="form-control ${not empty messages.username ? 'is-invalid' : ''}" 
+                                       class="form-control <%= messages != null && messages.containsKey("username") ? "is-invalid" : "" %>" 
                                        id="username" 
                                        name="username" 
-                                       value="${param.username}" 
+                                       value="<%= usernameParam != null ? usernameParam : "" %>" 
                                        required>
-                                ${not empty messages.username ? 
-                                    '<div class="invalid-feedback">' += messages.username += '</div>' : ''}
+                                <% if (messages != null && messages.containsKey("username")) { %>
+                                    <div class="invalid-feedback">
+                                        <%= messages.get("username") %>
+                                    </div>
+                                <% } %>
                             </div>
                             
                             <!-- Mot de passe -->
                             <div class="form-group">
                                 <label for="password">Mot de passe</label>
                                 <input type="password" 
-                                       class="form-control ${not empty messages.password ? 'is-invalid' : ''}" 
+                                       class="form-control <%= messages != null && messages.containsKey("password") ? "is-invalid" : "" %>" 
                                        id="password" 
                                        name="password" 
                                        required>
-                                ${not empty messages.password ? 
-                                    '<div class="invalid-feedback">' += messages.password += '</div>' : ''}
+                                <% if (messages != null && messages.containsKey("password")) { %>
+                                    <div class="invalid-feedback">
+                                        <%= messages.get("password") %>
+                                    </div>
+                                <% } %>
                             </div>
                             
                             <!-- Confirmation du mot de passe -->
                             <div class="form-group">
                                 <label for="confirmPassword">Confirmer le mot de passe</label>
                                 <input type="password" 
-                                       class="form-control ${not empty messages.confirmPassword ? 'is-invalid' : ''}" 
+                                       class="form-control <%= messages != null && messages.containsKey("confirmPassword") ? "is-invalid" : "" %>" 
                                        id="confirmPassword" 
                                        name="confirmPassword" 
                                        required>
-                                ${not empty messages.confirmPassword ? 
-                                    '<div class="invalid-feedback">' += messages.confirmPassword += '</div>' : ''}
+                                <% if (messages != null && messages.containsKey("confirmPassword")) { %>
+                                    <div class="invalid-feedback">
+                                        <%= messages.get("confirmPassword") %>
+                                    </div>
+                                <% } %>
                             </div>
+                            
+                            <!-- Affichage des erreurs générales -->
+                            <% if (messages != null && messages.containsKey("error")) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%= messages.get("error") %>
+                                </div>
+                            <% } %>
                             
                             <!-- Bouton de soumission -->
                             <button type="submit" class="btn btn-primary btn-block mb-3">

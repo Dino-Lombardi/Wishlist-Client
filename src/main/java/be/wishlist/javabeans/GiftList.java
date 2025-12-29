@@ -38,11 +38,11 @@ public class GiftList {
 		this.gifts = new ArrayList<Gift>();
 	}
 	
-	public int getIdgiftlist() {
+	public int getIdGiftlist() {
 		return idgiftlist;
 	}
 	
-	public void setIdgiftlist(int idgiftlist) {
+	public void setIdGiftlist(int idgiftlist) {
 		this.idgiftlist = idgiftlist;
 	}
 	
@@ -66,15 +66,15 @@ public class GiftList {
 		return creationdate;
 	}
 	
-	public void setCreationdate(LocalDate creationdate) {
+	public void setCreationDate(LocalDate creationdate) {
 		this.creationdate = creationdate;
 	}
 	
-	public LocalDate getExpirationdate() {
+	public LocalDate getExpirationDate() {
 		return expirationdate;
 	}
 	
-	public void setExpirationdate(LocalDate expirationdate) {
+	public void setExpirationDate(LocalDate expirationdate) {
 		this.expirationdate = expirationdate;
 	}
 	
