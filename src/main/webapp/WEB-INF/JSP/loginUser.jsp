@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    String error = (String) request.getAttribute("error");
+    String successMessage = (String) request.getAttribute("successMessage");
+    String usernameParam = request.getParameter("username");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,28 +23,23 @@
                     </div>
                     <div class="card-body">
                         <form action="login" method="POST">
-                            <%-- 
-							Version avec scriptlet JSP
-							<% if(request.getAttribute("error") != null) { %>
-							    <div class="alert alert-danger" role="alert">
-							        <%= request.getAttribute("error") %>
-							    </div>
-							<% }else if(request.getAttribute("successMessage") != null) { %>
-							    <div class="alert alert-success" role="alert">
-							        <%= request.getAttribute("successMessage") %>
-							    </div>
-							<% } %>
-							--%>
+                            <% if(error != null) { %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%= error %>
+                                </div>
+                            <% } else if(successMessage != null) { %>
+                                <div class="alert alert-success" role="alert">
+                                    <%= successMessage %>
+                                </div>
+                            <% } %>
                             
-                            ${not empty error ? '<div class="alert alert-danger" role="alert">' += error += '</div>' : ''}
-							${not empty successMessage ? '<div class="alert alert-success" role="alert">' += successMessage += '</div>' : ''}
                             <div class="form-group">
                                 <label for="username">Nom d'utilisateur</label>
                                 <input type="text" 
                                        class="form-control" 
                                        id="username" 
                                        name="username" 
-                                       value="${param.username}" 
+                                       value="<%= usernameParam != null ? usernameParam : "" %>" 
                                        required>
                             </div>
                             

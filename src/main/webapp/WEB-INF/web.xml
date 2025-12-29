@@ -12,10 +12,6 @@
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
   
-  <context-param>
-      <param-name>apiBaseUrl</param-name>
-        <param-value>http://localhost:8080/Wishlist-API/api</param-value>
-  </context-param>
   
   <!--  Paramètre de session  -->
   <session-config>
