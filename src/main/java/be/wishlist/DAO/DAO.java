@@ -3,6 +3,7 @@ package be.wishlist.DAO;
 import java.net.URI;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.core.UriBuilder;
 
 import com.sun.jersey.api.client.Client;
@@ -14,6 +15,7 @@ public abstract class DAO<T> {
 
 	private WebResource resource = null;
 	private Client client = null;
+	private static final String  API_URL = "http://localhost:8080/Wishlist-API/api";
 
     public DAO() {
     	ClientConfig config = new DefaultClientConfig();
@@ -22,7 +24,7 @@ public abstract class DAO<T> {
     }
     
 	private static URI getBaseURI() {
-		return UriBuilder.fromUri("http://localhost:8080/Wishlist-API/api").build();
+		return UriBuilder.fromUri(API_URL).build();
 	}
 	
 	public WebResource getResource() {
@@ -34,6 +36,8 @@ public abstract class DAO<T> {
     public abstract T find(int id);
     
     public abstract ArrayList<T> findAll();
+    
+    public abstract ArrayList<T> findAll(int id);
     
     public abstract boolean update(T obj);
 

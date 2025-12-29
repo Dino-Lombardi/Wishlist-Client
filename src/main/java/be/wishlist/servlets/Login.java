@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			if(session.getAttribute("connectedUser") != null) {
-				response.sendRedirect(request.getContextPath() + "/Home");
+				response.sendRedirect(request.getContextPath() + "/home");
 				return;
 			}
 			
@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
 		
 		if(user != null) {
 			request.getSession().setAttribute("connectedUser", user);
-			response.sendRedirect(request.getContextPath() + "/Home");
+			response.sendRedirect(request.getContextPath() + "/home");
 		} else {
 			request.setAttribute("error", "Nom d'utilisateur ou mot de passe incorrect.");
 			request.getRequestDispatcher("/WEB-INF/JSP/loginUser.jsp").forward(request, response);

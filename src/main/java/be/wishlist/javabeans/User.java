@@ -162,4 +162,9 @@ public class User implements Serializable {
 	public static User login (String username, String password) {
 		return ((UserDAO) userDAO).find(username, password);
 	}
+	
+	public boolean fetchGiftlists() {
+		this.giftlists = GiftList.getGiftListsByUser(this);
+		return giftlists != null;
+	}
 }
