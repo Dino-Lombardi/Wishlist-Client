@@ -85,6 +85,12 @@ public class UserDAO extends DAO<User>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public ArrayList<User> findAll(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public boolean update(User obj) {
@@ -97,5 +103,8 @@ public class UserDAO extends DAO<User>{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
+	
 
 }
