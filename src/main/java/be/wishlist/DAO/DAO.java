@@ -3,7 +3,6 @@ package be.wishlist.DAO;
 import java.net.URI;
 import java.util.ArrayList;
 
-import javax.servlet.ServletContext;
 import javax.ws.rs.core.UriBuilder;
 
 import com.sun.jersey.api.client.Client;

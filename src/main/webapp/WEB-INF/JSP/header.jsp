@@ -16,7 +16,7 @@
                 <a href="<%= contextPath %>/home" style="margin-right: 15px; color: #007bff; text-decoration: none;">
                     Mes Listes
                 </a>
-                <a href="<%= contextPath %>/invitations" style="margin-right: 15px; color: #007bff; text-decoration: none;">
+                <a href="<%= contextPath %>/InvUser" style="margin-right: 15px; color: #007bff; text-decoration: none;">
                     Invitations
                 </a>
                 <a href="<%= contextPath %>/participations" style="margin-right: 15px; color: #007bff; text-decoration: none;">

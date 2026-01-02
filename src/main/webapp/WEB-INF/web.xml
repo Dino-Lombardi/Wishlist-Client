@@ -53,6 +53,10 @@
       <servlet-class>be.wishlist.servlets.Home</servlet-class>
   </servlet>
   
+  <servlet>
+      <servlet-name>InvitationUser</servlet-name>
+      <servlet-class>be.wishlist.servlets.InvitationUser</servlet-class>
+  </servlet>
   
   <!-- Servlet Mappings -->
   
@@ -78,5 +82,10 @@
       <servlet-name>Home</servlet-name>
       <url-pattern>/home</url-pattern>
       <url-pattern>/accueil</url-pattern>
+  </servlet-mapping>
+    
+  <servlet-mapping>
+    <servlet-name>InvitationUser</servlet-name>
+    <url-pattern>/InvUser</url-pattern>
   </servlet-mapping>
 </web-app>

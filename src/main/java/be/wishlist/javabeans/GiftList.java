@@ -37,6 +37,7 @@ public class GiftList {
 		this.owner = owner;
 		this.gifts = new ArrayList<Gift>();
 	}
+		
 	
 	public int getIdGiftlist() {
 		return idgiftlist;
