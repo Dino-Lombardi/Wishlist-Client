@@ -57,7 +57,7 @@ public class UserDAO extends DAO<User>{
 			res = getResource()
 					.path("user")
 					.path("login")
-					.header("Content-Type", "application/json")
+	                .header("Content-Type", "application/json;charset=UTF-8")
 					.post(ClientResponse.class, loginuserJSON.toString());
 			
 			if (res.getStatus() == 200) {
