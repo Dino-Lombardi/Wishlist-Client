@@ -127,4 +127,8 @@ public class Invitation
 		return ((InvitationDAO) invitationDAO).findGiftlistInvitation(id);
 	}
 	
+	public static ArrayList<GiftList> findInvitedGiftlist(int id)
+	{
+		return ((InvitationDAO) invitationDAO).findInvitedGiftlist(id);
+	}
 }

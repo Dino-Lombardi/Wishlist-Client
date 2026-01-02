@@ -3,9 +3,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%
-    String contextPath = request.getContextPath();
     List<GiftList> giftlists = (List<GiftList>) request.getAttribute("giftlists");
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -16,9 +16,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <jsp:include page="header.jsp"/>
+    <%@ include file="header.jsp" %>
     
     <div class="container mt-4">
+        <!-- Messages de succès/erreur -->
+        <% if (session.getAttribute("successMessage") != null) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= session.getAttribute("successMessage") %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% session.removeAttribute("successMessage"); %>
+        <% } %>
+        
+        <% if (session.getAttribute("errorMessage") != null) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= session.getAttribute("errorMessage") %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% session.removeAttribute("errorMessage"); %>
+        <% } %>
+        
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1>Mes listes de cadeaux</h1>
             <a href="<%= contextPath %>/home/creategiftlist" 
@@ -55,10 +76,25 @@
                     %>
                         <tr>
                             <td><%= giftlist.getTitle() %></td>
-                            <td><%= giftlist.getDescription() %></td>
+                            <td>
+                                <% 
+                                    String description = giftlist.getDescription();
+                                    if (description != null && !description.trim().isEmpty()) { %>
+                                       
+										<%= description %>
+                                   	<% } %>
+                            </td>
                             <td><%= formattedCreationDate %></td>
                             <td><%= formattedExpirationDate %></td>
-                            <td><%= giftlist.getStatus() %></td>
+                            <td>
+                                <span class="badge badge-<%= 
+                                    giftlist.getStatus().toString().equals("ACTIVE") ? "success" :
+                                    giftlist.getStatus().toString().equals("INACTIVE") ? "warning" :
+                                    giftlist.getStatus().toString().equals("EXPIRED") ? "danger" :
+                                    "warning" %>">
+                                    <%= giftlist.getStatus() %>
+                                </span>
+                            </td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <a href="<%= contextPath %>/home/viewgiftlist?id=<%= giftlist.getIdGiftlist() %>" 
@@ -67,10 +103,13 @@
                                     <a href="<%= contextPath %>/home/editgiftlist?id=<%= giftlist.getIdGiftlist() %>" 
                                        class="btn btn-outline-warning">Modifier
                                     </a>
-                                    <a href="<%= contextPath %>/home/deletegiftlist?id=<%= giftlist.getIdGiftlist() %>" 
-                                       class="btn btn-outline-danger" 
-                                       onclick="return confirm('Supprimer cette liste ?');">Supprimer
-                                    </a>
+                                    <!-- Formulaire POST pour suppression -->
+                                    <form action="<%= contextPath %>/home/deletegiftlist" method="POST" style="display: inline;">
+                                        <input type="hidden" name="id" value="<%= giftlist.getIdGiftlist() %>">
+                                        <button type="submit" class="btn btn-outline-danger" onclick= "return confirm('Supprimer cette liste ?');">
+                                        	Supprimer
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -79,8 +118,11 @@
                     } else { 
                     %>
                         <tr>
-                            <td colspan="6" class="text-center">
-                                Aucune liste de cadeaux
+                            <td colspan="6" class="text-center py-4">
+                                <div class="alert alert-info">
+                                    <h5>Vous n'avez pas encore de liste de cadeaux</h5>
+                                    <p class="mb-0">Créez votre première liste en cliquant sur "Nouvelle liste".</p>
+                                </div>
                             </td>
                         </tr>
                     <% } %>

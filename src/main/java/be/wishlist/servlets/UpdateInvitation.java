@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import be.wishlist.enums.InvitationStatus;
 import be.wishlist.javabeans.Invitation;
 
-/**
- * Servlet implementation class UpdateInvitation
- */
-@WebServlet("/UpdateInvitation")
+
 public class UpdateInvitation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +30,7 @@ public class UpdateInvitation extends HttpServlet {
 		 try {
 	            int id = Integer.parseInt(request.getParameter("id"));
 	            String action = request.getParameter("action");
-
+	            
 	            Invitation inv = Invitation.find(id);
 
 	            if (inv == null) {
@@ -58,7 +55,7 @@ public class UpdateInvitation extends HttpServlet {
 
 	            Invitation.update(inv);
 
-	            response.sendRedirect(request.getContextPath() + "/InvUser");
+	            response.sendRedirect(request.getContextPath() + "/home/invitationuser");
 
 	        } catch (Exception e) {
 	            e.printStackTrace();

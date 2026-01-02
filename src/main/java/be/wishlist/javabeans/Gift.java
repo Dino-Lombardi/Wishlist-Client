@@ -1,10 +1,30 @@
 package be.wishlist.javabeans;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
+
+import java.util.Base64;
 
 import be.wishlist.DAO.DAO;
 import be.wishlist.DAO.GiftDAO;
 import be.wishlist.enums.GiftStatus;
+
+import java.io.*;
+import java.net.URL;
+import java.util.Base64;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+
+import be.wishlist.javabeans.*;
+import be.wishlist.enums.GiftStatus;
+import be.wishlist.DAO.GiftDAO;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 public class Gift {
 	private static final DAO<Gift> GiftDAO = new GiftDAO();
@@ -38,7 +58,6 @@ public class Gift {
 			String buylink, GiftList giftlist) {
 		this(name,description,price,priority,status,image,buylink,giftlist);
 		this.idgift = idgift;
-		
 	}
 	
 	
@@ -139,7 +158,7 @@ public class Gift {
 	}
 	
 	public static ArrayList<Gift> getGiftsByGiftList(int idgiftlist) {
-		return GiftDAO.findAll(idgiftlist);
+		return ((GiftDAO) GiftDAO).getGiftsFromGiftlist(idgiftlist);
 	}
 	
 	@Override
@@ -148,4 +167,6 @@ public class Gift {
 				+ ", priority=" + priority + ", status=" + status + ", image=" + image + ", buylink=" + buylink
 				+ ", giftlist=" + giftlist + "]";
 	}
+	
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.ws.rs.core.MediaType;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.sun.jersey.api.client.ClientResponse;
@@ -57,7 +58,7 @@ public class GiftDAO extends DAO<Gift>
 					.path("gift")
 					.type(MediaType.APPLICATION_JSON)
 					.post(ClientResponse.class,json.toString());
-			System.out.println(rep.getStatus());
+
 			return rep.getStatus() == 201;
 		}
 		catch(Exception e)
@@ -150,5 +151,36 @@ public class GiftDAO extends DAO<Gift>
 		}
 		return false;
 	}
+	
+	public ArrayList<Gift> getGiftsFromGiftlist(int id)
+	{
+		try 
+		{
+			String APIResponse = getResource()
+					.path("gift")
+					.path("giftlist")
+					.path(String.valueOf(id))
+					.get(String.class);
+			
+			JSONArray arr = new JSONArray(APIResponse);
+			ArrayList<Gift> gf = new ArrayList<>();
+
+			for (int i = 0; i < arr.length(); i++) {
+			    JSONObject json = arr.getJSONObject(i);
+			    
+			    Gift gl = parseGift(json);
+			    
+			    gf.add(gl);
+			    
+			}
+			return gf;
+
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
+		return null;
+	} 
 
 }

@@ -22,7 +22,6 @@ public class UserDAO extends DAO<User>{
 			userJSON.put("password", obj.getPassword());
 			res = getResource()
 					.path("user")
-					.type("application/json")
 					.accept("application/json")
 					.post(ClientResponse.class, userJSON.toString());
 			
@@ -57,7 +56,7 @@ public class UserDAO extends DAO<User>{
 			res = getResource()
 					.path("user")
 					.path("login")
-					.header("Content-Type", "application/json")
+	                .header("Content-Type", "application/json;charset=UTF-8")
 					.post(ClientResponse.class, loginuserJSON.toString());
 			
 			if (res.getStatus() == 200) {

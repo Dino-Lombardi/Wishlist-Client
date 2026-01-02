@@ -1,6 +1,7 @@
 package be.wishlist.DAO;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
 
+import be.wishlist.enums.GiftListStatus;
 import be.wishlist.enums.InvitationStatus;
 import be.wishlist.javabeans.Invitation;
 
@@ -46,6 +48,30 @@ public class InvitationDAO extends DAO<Invitation>{
 		Invitation i = new Invitation(idinv,status, user, gf,sentDate);
 		return i;
 	}
+	
+	public GiftList parseGiftList(JSONObject json) {
+	    int id = json.getInt("idgiftlist");
+	    String title = json.getString("title");
+	    String description = json.getString("description");
+
+	    JSONObject c = json.getJSONObject("creationdate");
+	    LocalDate creation = LocalDate.of(c.getInt("year"),c.getInt("monthValue"),c.getInt("dayOfMonth"));
+
+	    JSONObject e = json.getJSONObject("expirationdate");
+	    LocalDate expiration = LocalDate.of(e.getInt("year"),e.getInt("monthValue"),e.getInt("dayOfMonth"));
+
+	    GiftListStatus status = GiftListStatus.valueOf(json.getString("status"));
+
+	    String sharelink = json.getString("sharelink");
+
+	    JSONObject o = json.getJSONObject("owner");
+	    User owner = new User(o.getInt("idUser"),o.getString("firstname"),o.getString("lastname"),o.getString("username"),o.getString("password"));
+
+	    GiftList gl = new GiftList(id, title, description, creation, expiration, status, sharelink, owner);
+
+	    return gl;
+	}
+
 	
 	@Override
 	public boolean create(Invitation obj) {
@@ -203,6 +229,38 @@ public class InvitationDAO extends DAO<Invitation>{
 			}
 			
 			return invitations;
+
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ArrayList<GiftList> findInvitedGiftlist(int id)
+	{
+
+		try 
+		{
+			String APIResponse = getResource()
+					.path("Invitation")
+					.path("accepted")
+					.path(String.valueOf(id))
+					.get(String.class);
+			
+			JSONArray arr = new JSONArray(APIResponse);
+			ArrayList<GiftList> gf= new ArrayList<>();
+
+			for (int i = 0; i < arr.length(); i++) {
+			    JSONObject json = arr.getJSONObject(i);
+			    
+			    GiftList gl = parseGiftList(json);
+			    
+			    gf.add(gl);
+			    
+			}
+			return gf;
 
 		}
 		catch(Exception e) 

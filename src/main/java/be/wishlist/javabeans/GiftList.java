@@ -1,7 +1,11 @@
 package be.wishlist.javabeans;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import be.wishlist.DAO.DAO;
 import be.wishlist.DAO.GiftListDAO;
@@ -119,17 +123,102 @@ public class GiftList {
 		this.gifts.remove(gift);
 	}
 	
-	// Appeler dans GiftDAO
-	public boolean insert() {
-		return false;
+	public static LocalDate parseFrenchDate(String date) throws DateTimeParseException {
+		if (date == null || date.trim().isEmpty()) {
+            return null;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(date, formatter);
+    }
+	
+	public static LocalDate parseEnglishDate(String date) throws DateTimeParseException{
+		if (date == null || date.trim().isEmpty()) {
+            return null;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(date, formatter);
 	}
 	
-	public GiftList find(int id) {
-		return null;
+	public static GiftListStatus parseGiftListStatus(String status) throws IllegalArgumentException {
+		if (status == null || status.trim().isEmpty()) {
+			return null;
+		}
+		return GiftListStatus.valueOf(status);
+	}
+	
+	public boolean isDateExpired() {
+		return (!expirationdate.isAfter(LocalDate.now()));
+	}
+		
+	
+	public Map<String, String> validate() {
+        Map<String, String> errors = new HashMap<>();
+        
+        // Validation du titre
+        if (this.title == null || this.title.trim().isEmpty()) {
+            errors.put("title", "Le titre est obligatoire.");
+        } else if (this.title.length() > 50) {
+            errors.put("title", "Le titre ne doit pas dépasser 50 caractères.");
+        }
+        
+        // Validation de la description
+        if (this.description != null && this.description.length() > 500) {
+            errors.put("description", "La description ne doit pas dépasser 500 caractères.");
+        }
+        
+        // Validation de la date d'expiration
+        if (this.expirationdate == null) {
+            errors.put("expirationdate", "La date d'expiration est obligatoire.");
+        } else {
+            LocalDate today = LocalDate.now();
+            if (!this.expirationdate.isAfter(today)) {
+                errors.put("expirationdate", "La date d'expiration doit être strictement dans le futur (pas aujourd'hui).");
+            }
+        }
+        
+        // Validation du statut
+        if (this.status == null) {
+            errors.put("status", "Le statut est obligatoire.");
+        } else if (this.status == GiftListStatus.EXPIRED) {
+            errors.put("status", "Le statut EXPIRED ne peut pas être défini manuellement.");
+        }
+        
+        // Validation du propriétaire (pour création)
+        if (this.owner == null) {
+            errors.put("owner", "La liste doit avoir un propriétaire.");
+        }
+        
+        return errors;
+    }
+	
+	// Appeler dans GiftDAO
+	public boolean insert() {
+		return giftlistDAO.create(this);
+	}
+	
+	public static GiftList find(int id) {
+		return giftlistDAO.find(id);
 	}
 	
 	public static ArrayList<GiftList> getGiftListsByUser(User user) {
 		return giftlistDAO.findAll(user.getIdUser());
+	}
+	
+	public boolean update() {
+		return giftlistDAO.update(this);
+	}
+	
+	public boolean updateExpiredDate() {
+		if(this.isDateExpired()) {
+			status = GiftListStatus.EXPIRED;
+			return giftlistDAO.update(this);
+		}
+			
+		return false;
+	}
+	
+	public boolean delete() {
+		return giftlistDAO.delete(this);
 	}
 	
 	

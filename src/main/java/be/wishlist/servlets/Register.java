@@ -23,7 +23,7 @@ public class Register extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
 	}
 
 	
@@ -46,11 +46,11 @@ public class Register extends HttpServlet {
 			} else {
 				messages.put("error", "Un problème est survenu lors de la création de votre compte. Veuillez réessayer.");
 		        request.setAttribute("messages", messages);
-				request.getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
 			}
 		} else {
 	        request.setAttribute("messages", messages);
-			request.getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
+	        getServletContext().getRequestDispatcher("/WEB-INF/JSP/registerUser.jsp").forward(request, response);
         }
 
 	}
