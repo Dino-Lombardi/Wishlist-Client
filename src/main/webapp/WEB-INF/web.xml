@@ -12,6 +12,12 @@
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
   
+  <!-- Page d'erreur pour gérer les exceptions -->
+  <error-page>
+	<exception-type>java.lang.Throwable</exception-type>
+	<location>/errorPage.jsp</location>
+  </error-page>
+  
   
   <!--  Paramètre de session  -->
   <session-config>
@@ -28,14 +34,17 @@
   <filter-mapping>
       <filter-name>ConnectionFilter</filter-name>
       <servlet-name>Home</servlet-name>
+      <servlet-name>EditGiftList</servlet-name>
+      <servlet-name>CreateGiftList</servlet-name>
+      <servlet-name>DeleteGiftList</servlet-name>
   </filter-mapping>
   
   
   <!-- Servlets -->
    
   <servlet>
-	<servlet-name>Register</servlet-name>
-	<servlet-class>be.wishlist.servlets.Register</servlet-class>
+	  <servlet-name>Register</servlet-name>
+	  <servlet-class>be.wishlist.servlets.Register</servlet-class>
   </servlet>
   
   <servlet>
@@ -53,7 +62,20 @@
       <servlet-class>be.wishlist.servlets.Home</servlet-class>
   </servlet>
   
+  <servlet>
+  	  <servlet-name>EditGiftList</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.EditGiftList</servlet-class>
+  </servlet>
   
+  <servlet>
+  	  <servlet-name>CreateGiftList</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.CreateGiftList</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	  <servlet-name>DeleteGiftList</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.DeleteGiftList</servlet-class>
+  </servlet>  
   <!-- Servlet Mappings -->
   
   <servlet-mapping>
@@ -78,5 +100,23 @@
       <servlet-name>Home</servlet-name>
       <url-pattern>/home</url-pattern>
       <url-pattern>/accueil</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	  <servlet-name>EditGiftList</servlet-name>
+  	  <url-pattern>/home/editgiftlist</url-pattern>
+  	  <url-pattern>/home/modifierlistecadeau</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	  <servlet-name>CreateGiftList</servlet-name>
+  	  <url-pattern>/home/creategiftlist</url-pattern>
+  	  <url-pattern>/home/creerlistecadeau</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	  <servlet-name>DeleteGiftList</servlet-name>
+  	  <url-pattern>/home/deletegiftlist</url-pattern>
+  	  <url-pattern>/home/supprimerlistecadeau</url-pattern>
   </servlet-mapping>
 </web-app>

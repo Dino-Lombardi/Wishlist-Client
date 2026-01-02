@@ -22,9 +22,12 @@ public class Home extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		User user = (User)session.getAttribute("connectedUser");
 		user.fetchGiftlists();
+		user.getGiftlists().forEach(giftlist -> {
+			giftlist.updateExpiredDate();
+		});
 		request.setAttribute("giftlists", user.getGiftlists());
 		request.setAttribute("user", user);
-		request.getRequestDispatcher("/WEB-INF/JSP/home.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/JSP/home.jsp").forward(request, response);
 	}
 
 	

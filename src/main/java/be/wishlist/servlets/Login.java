@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
 		}
 
 		
-		request.getRequestDispatcher("/WEB-INF/JSP/loginUser.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/JSP/loginUser.jsp").forward(request, response);
 	}
 
 	
@@ -48,7 +48,7 @@ public class Login extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/home");
 		} else {
 			request.setAttribute("error", "Nom d'utilisateur ou mot de passe incorrect.");
-			request.getRequestDispatcher("/WEB-INF/JSP/loginUser.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/WEB-INF/JSP/loginUser.jsp").forward(request, response);
 		}
 	}
 }
