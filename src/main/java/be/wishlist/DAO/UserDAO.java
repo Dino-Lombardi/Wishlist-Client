@@ -22,7 +22,6 @@ public class UserDAO extends DAO<User>{
 			userJSON.put("password", obj.getPassword());
 			res = getResource()
 					.path("user")
-					.type("application/json")
 					.accept("application/json")
 					.post(ClientResponse.class, userJSON.toString());
 			
