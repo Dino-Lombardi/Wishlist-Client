@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-         version="4.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+
   <display-name>Wishlist-Client</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -35,7 +32,7 @@
   <!-- Filters -->
   <filter>
       <filter-name>ConnectionFilter</filter-name>
-        <filter-class>be.wishlist.filters.ConnectionFilter</filter-class>
+      <filter-class>be.wishlist.filters.ConnectionFilter</filter-class>
   </filter>
   
   <filter-mapping>
@@ -44,6 +41,7 @@
       <servlet-name>EditGiftList</servlet-name>
       <servlet-name>CreateGiftList</servlet-name>
       <servlet-name>DeleteGiftList</servlet-name>
+      <servlet-name>ViewGiftList</servlet-name>
   </filter-mapping>
   
   
@@ -88,6 +86,12 @@
   	  <servlet-name>DeleteGiftList</servlet-name>
   	  <servlet-class>be.wishlist.servlets.DeleteGiftList</servlet-class>
   </servlet> 
+  
+  <servlet>
+  	  <servlet-name>ViewGiftList</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.ViewGiftList</servlet-class>
+  </servlet>
+  
    <servlet>
   	  <servlet-name>UpdateInvitation</servlet-name>
   	  <servlet-class>be.wishlist.servlets.UpdateInvitation</servlet-class>
@@ -150,7 +154,13 @@
   	  <servlet-name>DeleteGiftList</servlet-name>
   	  <url-pattern>/home/deletegiftlist</url-pattern>
   	  <url-pattern>/home/supprimerlistecadeau</url-pattern>
-   </servlet-mapping>
+  </servlet-mapping>
+   
+  <servlet-mapping>
+  	  <servlet-name>ViewGiftList</servlet-name>
+  	  <url-pattern>/home/viewgiftlist</url-pattern>
+  	  <url-pattern>/home/voirlistecadeau</url-pattern>  	  
+  </servlet-mapping> 
    
 	<servlet-mapping>
 	<servlet-name>UpdateInvitation</servlet-name>

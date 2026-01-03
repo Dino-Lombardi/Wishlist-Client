@@ -97,9 +97,11 @@
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a href="<%= contextPath %>/home/viewgiftlist?id=<%= giftlist.getIdGiftlist() %>" 
-                                       class="btn btn-outline-info">Voir
-                                    </a>
+									<% if(!giftlist.getStatus().toString().equals("EXPIRED")) { %>
+									    <a href="<%= contextPath %>/home/viewgiftlist?id=<%= giftlist.getIdGiftlist() %>" 
+									       class="btn btn-outline-info">Voir</a>
+									<% } %>
+                                    
                                     <a href="<%= contextPath %>/home/editgiftlist?id=<%= giftlist.getIdGiftlist() %>" 
                                        class="btn btn-outline-warning">Modifier
                                     </a>

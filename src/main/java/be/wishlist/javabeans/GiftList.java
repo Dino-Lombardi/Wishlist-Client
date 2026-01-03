@@ -191,6 +191,13 @@ public class GiftList {
         return errors;
     }
 	
+	
+	public void sortGiftsByPriority() {
+        if (gifts != null && !gifts.isEmpty()) {
+            gifts.sort((g1, g2) -> Integer.compare(g2.getPriority(), g1.getPriority()));
+        }
+    }
+	
 	// Appeler dans GiftDAO
 	public boolean insert() {
 		return giftlistDAO.create(this);
@@ -202,6 +209,11 @@ public class GiftList {
 	
 	public static ArrayList<GiftList> getGiftListsByUser(User user) {
 		return giftlistDAO.findAll(user.getIdUser());
+	}
+	
+	public boolean fetchGifts() {
+		this.gifts = Gift.getGiftsByGiftList(idgiftlist);
+		return gifts != null;
 	}
 	
 	public boolean update() {
@@ -228,8 +240,4 @@ public class GiftList {
 				+ ", creationdate=" + creationdate + ", expirationdate=" + expirationdate + ", status=" + status
 				+ ", owner=" + owner + ", gifts=" + gifts + "]";
 	}
-		
-	
-	
-	
 }
