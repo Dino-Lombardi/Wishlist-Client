@@ -43,6 +43,42 @@ public class UserDAO extends DAO<User>{
 		return null;
 	}
 	
+	
+	public User find(String username) {
+		
+		ClientResponse res;
+		User user = null;
+		
+		try {
+		
+			res = getResource()
+					.path("user")
+					.path("username")
+					.path(String.valueOf(username))
+					.accept("application/json")
+					.get(ClientResponse.class);
+			
+			if (res.getStatus() == 200) {
+				JSONObject userJSON = new JSONObject(res.getEntity(String.class));
+				int iduser = userJSON.getInt("idUser");
+				String firstname = userJSON.getString("firstname");
+				String lastname = userJSON.getString("lastname");
+				String usrname = userJSON.getString("username");
+				String pwd = userJSON.getString("password");
+				
+				user = new User(iduser, firstname, lastname, usrname, pwd);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Exception dans UserDAO - find avec l'username");
+			System.out.println(e.getMessage());
+			return null;
+		}
+		
+		return user;
+	}
+	
+
 	public User find(String username, String password) {
 		
 		ClientResponse res;
