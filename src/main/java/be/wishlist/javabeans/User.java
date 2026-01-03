@@ -155,6 +155,10 @@ public class User implements Serializable {
 		return userDAO.find(id);
 	}
 	
+	public static User getUser(String username) {
+		return  ((UserDAO) userDAO).find(username);
+	}
+	
 	public static ArrayList<User> getUsers(){
 		return userDAO.findAll();
 	}
