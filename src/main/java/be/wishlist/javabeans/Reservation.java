@@ -143,5 +143,16 @@ public class Reservation
 	            ", gift=" + (gift != null ? gift.getIdGift() + " - " + gift.getName() : "null") +'}';
 	}
 
+	public static double getTotalAmountReserved(Gift gift) 
+	{
+		double totalReserved = 0;
+        ArrayList<Reservation> reservations = Reservation.findGiftReservations(gift.getIdGift());
+        if (reservations != null) {
+            for (Reservation r : reservations) {
+                totalReserved += r.getAmount();
+            }
+        }
+        return totalReserved;
+	}
 	
 }

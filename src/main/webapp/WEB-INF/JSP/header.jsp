@@ -20,17 +20,15 @@
 
                     Invitations
                 </a>
-                <a href="<%= request.getContextPath() %>/participations" style="margin-right: 15px; color: #007bff; text-decoration: none;">
-                    Participations
+                <a href="<%= request.getContextPath() %>/home/viewreservation" style="margin-right: 15px; color: #007bff; text-decoration: none;">
+                    Reservations
                 </a>
                 <a href="<%= request.getContextPath() %>/home/invitedgiftlist" style="margin-right: 15px; color: #007bff; text-decoration: none;">
                     Listes invitées
                 </a>
-                <a href="<%= request.getContextPath() %>/home/addgift?idgiftlist=1" style="margin-right: 15px; color: #007bff; text-decoration: none;"> add gift test </a>
             <% } %>
         </div>
         
-        <!-- Utilisateur et déconnexion -->
         <% if (connectedUser != null) { %>
             <div>
                 <span style="margin-right: 15px;"><%= connectedUser.getFirstname() %></span>

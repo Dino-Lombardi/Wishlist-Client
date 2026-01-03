@@ -34,7 +34,6 @@ public class CreateGiftList extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("connectedUser");
         
-        // Récupérer les données du formulaire
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String expirationdateStr = request.getParameter("expirationdate");

@@ -106,6 +106,36 @@
 	  <servlet-name>AddGift</servlet-name>
 	  <servlet-class>be.wishlist.servlets.AddGift</servlet-class>
   </servlet>
+  
+  <servlet>
+  <servlet-name>EditGift</servlet-name>
+  <servlet-class>be.wishlist.servlets.EditGift</servlet-class>
+  </servlet>
+  
+  <servlet>
+  <servlet-name>DeleteGift</servlet-name>
+  <servlet-class>be.wishlist.servlets.DeleteGift</servlet-class>
+  </servlet>
+  
+   <servlet>
+  <servlet-name>UpdateGift</servlet-name>
+  <servlet-class>be.wishlist.servlets.UpdateGift</servlet-class>
+  </servlet>
+  
+   <servlet>
+  <servlet-name>ReserveGift</servlet-name>
+  <servlet-class>be.wishlist.servlets.ReserveGift</servlet-class>
+  </servlet>
+   
+    <servlet>
+  <servlet-name>ViewReservation</servlet-name>
+  <servlet-class>be.wishlist.servlets.ViewReservation</servlet-class>
+  </servlet>
+  
+   <servlet>
+  <servlet-name>DeleteReservation</servlet-name>
+  <servlet-class>be.wishlist.servlets.DeleteReservation</servlet-class>
+  </servlet>
    
   <!-- Servlet Mappings -->
   
@@ -175,5 +205,35 @@
 	<servlet-mapping>
 	<servlet-name>AddGift</servlet-name>
 	<url-pattern>/home/addgift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>EditGift</servlet-name>
+	<url-pattern>/home/editgift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>DeleteGift</servlet-name>
+	<url-pattern>/home/deletegift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>UpdateGift</servlet-name>
+	<url-pattern>/home/updategift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReserveGift</servlet-name>
+	<url-pattern>/home/reservegift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ViewReservation</servlet-name>
+	<url-pattern>/home/viewreservation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>DeleteReservation</servlet-name>
+	<url-pattern>/home/deletereservation</url-pattern>
 	</servlet-mapping>
 </web-app>

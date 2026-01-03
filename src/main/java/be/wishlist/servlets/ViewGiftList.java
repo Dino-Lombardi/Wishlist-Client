@@ -33,9 +33,9 @@ public class ViewGiftList extends HttpServlet {
 			}
 			User user = (User) session.getAttribute("connectedUser");
 			
-			if(giftlist.getOwner().getIdUser() != user.getIdUser()) {
-				throw new ServletException("Vous n'êtes pas le propriétaire de cette liste de cadeaux.");
-			}
+			boolean isOwner = giftlist.getOwner().getIdUser() == user.getIdUser();
+			request.setAttribute("isOwner", isOwner);
+
 			
 			if(giftlist.fetchGifts()) {
 				giftlist.sortGiftsByPriority();

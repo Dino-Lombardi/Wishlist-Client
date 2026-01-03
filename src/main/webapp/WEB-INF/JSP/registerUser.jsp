@@ -26,7 +26,6 @@
                     </div>
                     <div class="card-body">
                         <form action="register" method="POST">
-                            <!-- Prénom -->
                             <div class="form-group">
                                 <label for="firstname">Prénom</label>
                                 <input type="text" 
@@ -42,7 +41,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Nom de famille -->
                             <div class="form-group">
                                 <label for="lastname">Nom de famille</label>
                                 <input type="text" 
@@ -58,7 +56,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Nom d'utilisateur -->
                             <div class="form-group">
                                 <label for="username">Nom d'utilisateur</label>
                                 <input type="text" 
@@ -74,7 +71,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Mot de passe -->
                             <div class="form-group">
                                 <label for="password">Mot de passe</label>
                                 <input type="password" 
@@ -89,7 +85,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Confirmation du mot de passe -->
                             <div class="form-group">
                                 <label for="confirmPassword">Confirmer le mot de passe</label>
                                 <input type="password" 
@@ -104,20 +99,17 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Affichage des erreurs générales -->
                             <% if (messages != null && messages.containsKey("error")) { %>
                                 <div class="alert alert-danger" role="alert">
                                     <%= messages.get("error") %>
                                 </div>
                             <% } %>
                             
-                            <!-- Bouton de soumission -->
                             <button type="submit" class="btn btn-primary btn-block mb-3">
                                 Créer le compte
                             </button>
                         </form>
                         
-                        <!-- Bouton de connexion -->
                         <div class="text-center mt-3 pt-3 border-top">
                             <p class="text-muted mb-2">Déjà un compte ?</p>
                             <a href="login" class="btn btn-outline-primary btn-block">Se connecter</a>

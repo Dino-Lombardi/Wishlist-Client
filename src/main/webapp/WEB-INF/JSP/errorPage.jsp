@@ -13,13 +13,11 @@
 
 <h2 class="text-danger">Une erreur est survenue</h2>
 
-<!-- Message d'erreur -->
 <div class="alert alert-danger mt-3">
     <strong>Message :</strong>
     <pre><%= exception != null ? exception.getMessage() : "Aucun message disponible" %></pre>
 </div>
 
-<!-- Stacktrace -->
 <div class="alert alert-warning mt-3">
     <strong>Stacktrace :</strong>
     <pre>

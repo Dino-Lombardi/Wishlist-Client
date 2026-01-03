@@ -57,7 +57,6 @@ public class EditGiftList extends HttpServlet {
 
             }
             
-         // Récupérer les données du formulaire
             String title = request.getParameter("title");
             String description = request.getParameter("description");
             String expirationdateStr = request.getParameter("expirationdate");

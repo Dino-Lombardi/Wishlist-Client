@@ -34,37 +34,31 @@
       enctype="multipart/form-data"
       class="mt-4">
 
-    <!-- Nom -->
     <div class="form-group">
         <label>Nom du cadeau</label>
         <input type="text" name="name" class="form-control" required>
     </div>
 
-    <!-- Description -->
     <div class="form-group">
         <label>Description</label>
         <textarea name="description" class="form-control" required></textarea>
     </div>
 
-    <!-- Prix -->
     <div class="form-group">
         <label>Prix (€)</label>
         <input type="number" name="price" step="0.01" class="form-control" required>
     </div>
 
-    <!-- Priorité -->
     <div class="form-group">
         <label>Priorité (1 = haute, 5 = basse)</label>
         <input type="number" name="priority" min="1" max="5" class="form-control" required>
     </div>
 
-    <!-- Lien d'achat -->
     <div class="form-group">
         <label>Lien d'achat</label>
         <input type="url" name="buylink" class="form-control">
     </div>
 
-    <!-- Image -->
     <div class="form-group">
         <label>Image du cadeau</label>
         <input type="file" name="image" accept="image/*" class="form-control" required>

@@ -37,7 +37,6 @@
                     <div class="card-body">
                         <form action="<%= contextPath %>/home/creategiftlist" method="POST">
                             
-                            <!-- Titre -->
                             <div class="form-group">
                                 <label for="title">Titre <span class="text-danger">*</span></label>
                                 <input type="text" 
@@ -54,7 +53,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Description -->
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea class="form-control <%= messages != null && messages.containsKey("description") ? "is-invalid" : "" %>" 
@@ -69,7 +67,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Date d'expiration -->
                             <div class="form-group">
                                 <label for="expirationdate">Date d'expiration <span class="text-danger">*</span></label>
                                 <input type="date" 
@@ -86,7 +83,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Statut (optionnel, par défaut ACTIVE) -->
                             <div class="form-group">
                                 <label for="status">Statut</label>
                                 <select class="form-control <%= messages != null && messages.containsKey("status") ? "is-invalid" : "" %>" 
@@ -107,7 +103,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Informations qui seront générées automatiquement -->
                             <div class="border rounded p-3 mb-4 bg-light">
                                 <h6 class="text-muted mb-3">Informations générées automatiquement</h6>
                                 
@@ -116,13 +111,11 @@
                                     <p class="mb-0"><strong>Lien de partage :</strong> Un lien unique sera généré automatiquement.</p>
                                 </div>
                             </div>
-                            
-                            <!-- Messages d'erreur -->
+                                                        
                             <% if (messages != null && messages.containsKey("error")) { %>
                                 <div class="alert alert-danger" role="alert"><%= messages.get("error") %></div>
                             <% } %>
                             
-                            <!-- Boutons -->
                             <div class="d-flex justify-content-between mt-4">
                                 <a href="<%= contextPath %>/home" class="btn btn-outline-secondary">Retour</a>
                                 <button type="submit" class="btn btn-success">Créer la liste</button>

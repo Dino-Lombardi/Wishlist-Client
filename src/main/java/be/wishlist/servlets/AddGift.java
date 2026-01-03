@@ -69,12 +69,9 @@ public class AddGift extends HttpServlet {
         }
 
         GiftList gl = GiftList.find(idgiftlist);
-        System.out.println("giftlist recup");
 
         Gift gift = new Gift(name, description, price, priority, status, imageBase64, buylink, gl);
-        System.out.println("gift creee");
         boolean ok = gift.insert();
-        System.out.println(ok);
         
         if (!ok) {
             request.setAttribute("error", "Impossible d'ajouter le cadeau.");

@@ -19,7 +19,6 @@
     <%@ include file="header.jsp" %>
     
     <div class="container mt-4">
-        <!-- Messages de succès/erreur -->
         <% if (session.getAttribute("successMessage") != null) { %>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <%= session.getAttribute("successMessage") %>
@@ -105,7 +104,6 @@
                                     <a href="<%= contextPath %>/home/editgiftlist?id=<%= giftlist.getIdGiftlist() %>" 
                                        class="btn btn-outline-warning">Modifier
                                     </a>
-                                    <!-- Formulaire POST pour suppression -->
                                     <form action="<%= contextPath %>/home/deletegiftlist" method="POST" style="display: inline;">
                                         <input type="hidden" name="id" value="<%= giftlist.getIdGiftlist() %>">
                                         <button type="submit" class="btn btn-outline-danger" onclick= "return confirm('Supprimer cette liste ?');">

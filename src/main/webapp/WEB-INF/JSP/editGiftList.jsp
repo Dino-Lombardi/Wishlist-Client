@@ -53,7 +53,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Description -->
                             <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea class="form-control <%= messages != null && messages.containsKey("description") ? "is-invalid" : "" %>" 
@@ -68,7 +67,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Date d'expiration avec calendrier HTML5 -->
                             <div class="form-group">
                                 <label for="expirationdate">Date d'expiration <span class="text-danger">*</span></label>
                                 <input type="date" 
@@ -85,7 +83,6 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Statut -->
                             <div class="form-group">
                                 <label for="status">Statut <span class="text-danger">*</span></label>
                                 <select class="form-control <%= messages != null && messages.containsKey("status") ? "is-invalid" : "" %>" 
@@ -105,11 +102,9 @@
                                 <% } %>
                             </div>
                             
-                            <!-- Informations non modifiables -->
                             <div class="border rounded p-3 mb-4 bg-light">
                                 <h6 class="text-muted mb-3">Informations non modifiables</h6>
                                 
-                                <!-- Date de création -->
                                 <div class="form-group mb-3">
                                     <label class="text-muted">Date de création</label>
                                     <div class="form-control-plaintext border bg-white p-2">
@@ -118,7 +113,6 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Lien de partage -->
                                 <div class="form-group">
                                     <label class="text-muted">Lien de partage</label>
                                     <div class="form-control-plaintext border bg-white p-2">
@@ -133,7 +127,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Messages -->
                             <% if (messages != null && messages.containsKey("error")) { %>
                                 <div class="alert alert-danger" role="alert"><%= messages.get("error") %></div>
                             <% } %>
@@ -144,7 +137,6 @@
                                 </div>
                             <% } %>
                             
-                            <!-- Boutons -->
                             <div class="d-flex justify-content-between mt-4">
                                 <a href="<%= contextPath %>/home" class="btn btn-outline-secondary">Retour</a>
                                 <button type="submit" class="btn btn-primary">Mettre à jour</button>
