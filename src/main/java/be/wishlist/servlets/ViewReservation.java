@@ -45,7 +45,7 @@ public class ViewReservation extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Erreur lors du chargement de vos réservations.");
-            request.getRequestDispatcher("/WEB-INF/JSP/Error.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/JSP/errorPage.jsp").forward(request, response);
         }
     }
 }

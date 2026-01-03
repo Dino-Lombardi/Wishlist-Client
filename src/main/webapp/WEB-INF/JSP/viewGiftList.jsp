@@ -74,6 +74,10 @@
                    class="btn btn-primary">
                     <i class="fas fa-plus"></i> Ajouter un cadeau
                 </a>
+                 <a href="<%= contextPath %>/home/sendinvitation?idgiftlist=<%= giftlist.getIdGiftlist() %>"
+               class="btn btn-info">
+                <i class="fas fa-paper-plane"></i> Envoyer une invitation
+            </a>
             <% } %>
         </div>
 

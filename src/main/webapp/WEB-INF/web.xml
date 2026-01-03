@@ -136,6 +136,11 @@
   <servlet-name>DeleteReservation</servlet-name>
   <servlet-class>be.wishlist.servlets.DeleteReservation</servlet-class>
   </servlet>
+  
+   <servlet>
+  <servlet-name>SendInvitation</servlet-name>
+  <servlet-class>be.wishlist.servlets.SendInvitation</servlet-class>
+  </servlet>
    
   <!-- Servlet Mappings -->
   
@@ -235,5 +240,10 @@
 	<servlet-mapping>
 	<servlet-name>DeleteReservation</servlet-name>
 	<url-pattern>/home/deletereservation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>SendInvitation</servlet-name>
+	<url-pattern>/home/sendinvitation</url-pattern>
 	</servlet-mapping>
 </web-app>

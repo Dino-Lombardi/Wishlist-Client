@@ -167,4 +167,9 @@ public class User implements Serializable {
 		this.giftlists = GiftList.getGiftListsByUser(this);
 		return giftlists != null;
 	}
+	
+	public static User findByUsername(String username) 
+	{
+		return ((UserDAO) userDAO).findByUsername(username);
+	}
 }
