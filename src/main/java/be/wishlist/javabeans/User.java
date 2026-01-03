@@ -172,8 +172,4 @@ public class User implements Serializable {
 		return giftlists != null;
 	}
 	
-	public static User findByUsername(String username) 
-	{
-		return ((UserDAO) userDAO).findByUsername(username);
-	}
 }

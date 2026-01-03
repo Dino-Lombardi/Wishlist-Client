@@ -64,7 +64,7 @@ public class SendInvitation extends HttpServlet {
             }
 
             // Vérifier si l'utilisateur existe
-            User invitedUser = User.findByUsername(username);
+            User invitedUser = User.getUser(username);
 
             if (invitedUser == null) {
                 request.setAttribute("error", "Utilisateur introuvable.");
