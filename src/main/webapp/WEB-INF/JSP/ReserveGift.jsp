@@ -7,20 +7,9 @@
     Gift gift = (Gift) request.getAttribute("gift");
     String contextPath = request.getContextPath();
 
-    // Calcul du montant déjà réservé
-    double totalReserved = 0;
-    ArrayList<Reservation> reservations = Reservation.findGiftReservations(gift.getIdGift());
-    if (reservations != null) {
-        for (Reservation r : reservations) {
-            totalReserved += r.getAmount();
-        }
-    }
-
+    double totalReserved = Reservation.getTotalAmountReserved(gift);
     double remaining = gift.getPrice() - totalReserved;
     if (remaining < 0) remaining = 0;
-
-    // Détecter si on vient du bouton "Contribuer"
-    boolean isGroup = "true".equals(request.getParameter("group"));
 %>
 
 <!DOCTYPE html>
@@ -38,7 +27,7 @@
 
         <h2 class="mb-4">
             <i class="fas fa-hand-holding-heart"></i>
-            <%= isGroup ? "Contribuer" : "Réserver" %> : <%= gift.getName() %>
+            Réserver : <%= gift.getName() %>
         </h2>
 
         <div class="card shadow-sm p-4">
@@ -64,33 +53,33 @@
 
             <form action="<%= contextPath %>/home/reservegift" method="post">
 
-		    <input type="hidden" name="idgift" value="<%= gift.getIdGift() %>">
-		    <input type="hidden" name="group" value="true">
-		
-		    <div class="form-group">
-		        <label>Montant que vous souhaitez offrir (€)</label>
-		        <input id="amountField"
-		               type="number"
-		               step="0.01"
-		               min="1"
-		               max="<%= String.format("%.2f", remaining) %>"
-		               name="amount"
-		               class="form-control"
-		               value="<%= String.format("%.2f", remaining) %>"
-		               required>
-		    </div>
-		
-		    <div class="form-group form-check">
-		        <input type="checkbox" class="form-check-input" checked disabled>
-		        <label class="form-check-label">Achat groupé obligatoire</label>
-		    </div>
-		
-		    <button type="submit" class="btn btn-success btn-block">
-		        <i class="fas fa-check"></i> Confirmer la contribution
-		    </button>
-		
-		</form>
+                <input type="hidden" name="idgift" value="<%= gift.getIdGift() %>">
 
+                <div class="form-group">
+                    <label>Montant que vous souhaitez offrir (€)</label>
+                    <input id="amountField"
+                           type="number"
+                           step="0.01"
+                           min="1"
+                           max="<%= String.format("%.2f", remaining) %>"
+                           name="amount"
+                           class="form-control"
+                           value="<%= String.format("%.2f", remaining) %>"
+                           required>
+                </div>
+
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="isgroup" name="isgroup" value="true">
+                    <label class="form-check-label" for="isgroup">
+                        Participer à un achat groupé
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-block">
+                    <i class="fas fa-check"></i> Confirmer la réservation
+                </button>
+
+            </form>
 
         </div>
     </div>

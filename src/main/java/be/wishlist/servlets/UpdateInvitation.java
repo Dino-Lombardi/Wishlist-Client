@@ -45,7 +45,7 @@ public class UpdateInvitation extends HttpServlet {
 	                    break;
 
 	                case "reject":
-	                    inv.setStatus(InvitationStatus.REJECTED);
+	                    Invitation.delete(inv);
 	                    break;
 
 	                default:

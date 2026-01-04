@@ -44,11 +44,11 @@ public class InvitationDAO extends DAO<Invitation>{
 		JSONObject jsonu = json.getJSONObject("user");
 		User user = new User(jsonu.getInt("idUser"),jsonu.optString("firstname",null),jsonu.optString("lastname",null),null,null);
 		User owner = new User(jowner.getInt("idUser"),jowner.optString("firstname",null),jowner.optString("lastname",null),null,null);
-		GiftList gf = new GiftList(jgift.getInt("idgiftlist"),jgift.getString("title"),jgift.getString("description"),null,null,null, jgift.getString("sharelink"),owner);
+		GiftList gf = new GiftList(jgift.getInt("idgiftlist"),jgift.getString("title"),jgift.getString("description"),null,null,null, jgift.optString("sharelink", null),owner);
 		Invitation i = new Invitation(idinv,status, user, gf,sentDate);
 		return i;
 	}
-	
+
 	public GiftList parseGiftList(JSONObject json) {
 	    int id = json.getInt("idgiftlist");
 	    String title = json.getString("title");

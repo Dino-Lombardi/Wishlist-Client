@@ -42,6 +42,9 @@
       <servlet-name>CreateGiftList</servlet-name>
       <servlet-name>DeleteGiftList</servlet-name>
       <servlet-name>ViewGiftList</servlet-name>
+      <servlet-name>UpdateInvitation</servlet-name>
+      <servlet-name>InvitedGiftlist</servlet-name>
+      <servlet-name>AddGift</servlet-name>
   </filter-mapping>
   
   

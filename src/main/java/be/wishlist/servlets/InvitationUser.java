@@ -25,7 +25,7 @@ public class InvitationUser extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("connectedUser");
-		
+
 		if (user == null) 
 		{
 			response.sendRedirect("loginUser.jsp");
@@ -33,6 +33,7 @@ public class InvitationUser extends HttpServlet {
 		}
 		
 		ArrayList<Invitation> inv = Invitation.findUserInvitations(user.getIdUser());
+		
 		if (inv == null) 
 		{
 			inv = new ArrayList<Invitation>();
