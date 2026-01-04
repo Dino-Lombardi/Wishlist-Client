@@ -106,33 +106,41 @@ public class GiftDAO extends DAO<Gift>
 
 	@Override
 	public boolean update(Gift obj) {
-		try 
-		{
-			JSONObject json = new JSONObject();
-			json.put("name", obj.getName());
-			json.put("description", obj.getDescription());
-			json.put("price", obj.getPrice());
-			json.put("priority", obj.getPriority());
-			json.put("status", obj.getStatus());
-			json.put("image", obj.getImage());
-			json.put("buylink", obj.getBuylink());
-			json.put("idgiftlist", obj.getGiftlist().getIdGiftlist());
-			
-			 ClientResponse rep = getResource()
-		                .path("gift")
-		                .path(String.valueOf(obj.getIdGift()))
-		                .type(MediaType.APPLICATION_JSON)
-		                .put(ClientResponse.class, json.toString());
-			 
-			 return rep.getStatus() == 200; 
-			 
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return false;
+	    try 
+	    {
+	        JSONObject json = new JSONObject();
+	        json.put("name", obj.getName());
+	        json.put("description", obj.getDescription());
+	        json.put("price", obj.getPrice());
+	        json.put("priority", obj.getPriority());
+	        json.put("status", obj.getStatus().toString());
+	        json.put("buylink", obj.getBuylink());
+
+	        if (obj.getImage() != null && !obj.getImage().isEmpty()) {
+	            json.put("image", obj.getImage());
+	        }
+
+	        json.put("idgiftlist", obj.getGiftlist().getIdGiftlist());
+
+	        ClientResponse rep = getResource()
+	                .path("gift")
+	                .path(String.valueOf(obj.getIdGift()))
+	                .type(MediaType.APPLICATION_JSON)
+	                .put(ClientResponse.class, json.toString());
+
+	        System.out.println("UPDATE STATUS = " + rep.getStatus());
+	        System.out.println("JSON SENT = " + json.toString(2));
+
+	        return rep.getStatus() == 200 || rep.getStatus() == 204;
+	    }
+	    catch(Exception e)
+	    {
+	        e.printStackTrace();
+	    }
+	    return false;
 	}
+
+
 
 	@Override
 	public boolean delete(Gift obj) {
@@ -163,6 +171,7 @@ public class GiftDAO extends DAO<Gift>
 					.get(String.class);
 			
 			JSONArray arr = new JSONArray(APIResponse);
+			
 			ArrayList<Gift> gf = new ArrayList<>();
 
 			for (int i = 0; i < arr.length(); i++) {

@@ -171,62 +171,87 @@ public class ReservationDAO extends DAO<Reservation>{
 	
 	public ArrayList<Reservation> findUserReservations(int id)
 	{
-		try 
-		{
-			String APIResponse = getResource()
-					.path("Reservation")
-					.path("user")
-					.path(String.valueOf(id))
-					.get(String.class);
-			
-			JSONArray arr = new JSONArray(APIResponse);
-			ArrayList<Reservation> res = new ArrayList<Reservation>();
-			
-			for (int i = 0; i < arr.length(); i++) {
-			    JSONObject json = arr.getJSONObject(i);
-			    
-			    Reservation inv = parseReservation(json);
-			    
-			    res.add(inv);
-			}
-			
-			return res;
-		}
-		catch(Exception e) 
-		{
-			e.printStackTrace();
-		}
-		return null;
+	    try 
+	    {
+	        ClientResponse rep = getResource()
+	                .path("Reservation")
+	                .path("user")
+	                .path(String.valueOf(id))
+	                .get(ClientResponse.class);
+
+	        int status = rep.getStatus();
+
+	        if (status == 204) {
+	            return new ArrayList<>();
+	        }
+
+	        if (status != 200) {
+	            return null;
+	        }
+
+	        String APIResponse = rep.getEntity(String.class);
+
+	        JSONArray arr = new JSONArray(APIResponse);
+	        ArrayList<Reservation> res = new ArrayList<>();
+
+	        for (int i = 0; i < arr.length(); i++) {
+	            JSONObject json = arr.getJSONObject(i);
+	            Reservation inv = parseReservation(json);
+	            res.add(inv);
+	        }
+
+	        return res;
+	    }
+	    catch(Exception e) 
+	    {
+	        e.printStackTrace();
+	    }
+	    return null;
 	}
+
 	
 	public ArrayList<Reservation> findGiftReservations(int id)
 	{
-		try 
-		{
-			String APIResponse = getResource()
-					.path("Reservation")
-					.path("gift")
-					.path(String.valueOf(id))
-					.get(String.class);
-			
-			JSONArray arr = new JSONArray(APIResponse);
-			ArrayList<Reservation> res = new ArrayList<Reservation>();
-			
-			for (int i = 0; i < arr.length(); i++) {
-			    JSONObject json = arr.getJSONObject(i);
-			    
-			    Reservation inv = parseReservation(json);
-			    
-			    res.add(inv);
-			}
-			
-			return res;
-		}
-		catch(Exception e) 
-		{
-			e.printStackTrace();
-		}
-		return null;
+	    try 
+	    {
+	        ClientResponse rep = getResource()
+	                .path("Reservation")
+	                .path("gift")
+	                .path(String.valueOf(id))
+	                .get(ClientResponse.class);
+
+	        int status = rep.getStatus();
+
+
+	        if (status == 204) {
+	            return new ArrayList<>();
+	        }
+
+
+	        if (status != 200) {
+	            return null;
+	        }
+
+
+	        String APIResponse = rep.getEntity(String.class);
+
+	        JSONArray arr = new JSONArray(APIResponse);
+	        ArrayList<Reservation> res = new ArrayList<>();
+
+	        for (int i = 0; i < arr.length(); i++) {
+	            JSONObject json = arr.getJSONObject(i);
+	            Reservation inv = parseReservation(json);
+	            res.add(inv);
+	        }
+
+	        return res;
+	    }
+	    catch(Exception e) 
+	    {
+	        e.printStackTrace();
+	    }
+	    return null;
 	}
+
 
 }
