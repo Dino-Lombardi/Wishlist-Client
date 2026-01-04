@@ -2,16 +2,6 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
 
   <display-name>Wishlist-Client</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.xhtml</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.xhtml</welcome-file>
-  </welcome-file-list>
   
   <!-- Page d'erreur pour gérer les exceptions -->
  
@@ -21,8 +11,6 @@
 	</error-page>
 
 
-  
-  
   <!--  Paramètre de session  -->
   <session-config>
     <session-timeout>20</session-timeout>
@@ -43,12 +31,25 @@
       <servlet-name>DeleteGiftList</servlet-name>
       <servlet-name>ViewGiftList</servlet-name>
       <servlet-name>UpdateInvitation</servlet-name>
+      <servlet-name>InvitationUser</servlet-name>
       <servlet-name>InvitedGiftlist</servlet-name>
       <servlet-name>AddGift</servlet-name>
+      <servlet-name>EditGift</servlet-name>
+      <servlet-name>DeleteGift</servlet-name>
+      <servlet-name>UpdateGift</servlet-name>
+      <servlet-name>ReserveGift</servlet-name>
+      <servlet-name>ViewReservation</servlet-name>
+      <servlet-name>DeleteReservation</servlet-name>
+      <servlet-name>SendInvitation</servlet-name>
   </filter-mapping>
   
   
   <!-- Servlets -->
+   <servlet>
+   	  <servlet-name>Index</servlet-name>
+   	  <servlet-class>be.wishlist.servlets.Index</servlet-class>
+   </servlet>
+   
    
   <servlet>
 	  <servlet-name>Register</servlet-name>
@@ -69,11 +70,6 @@
       <servlet-name>Home</servlet-name>
       <servlet-class>be.wishlist.servlets.Home</servlet-class>
   </servlet>
-  
-  <servlet>
-      <servlet-name>InvitationUser</servlet-name>
-      <servlet-class>be.wishlist.servlets.InvitationUser</servlet-class>
-  </servlet>
 
   <servlet> 
    <servlet-name>EditGiftList</servlet-name>
@@ -93,6 +89,11 @@
   <servlet>
   	  <servlet-name>ViewGiftList</servlet-name>
   	  <servlet-class>be.wishlist.servlets.ViewGiftList</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>InvitationUser</servlet-name>
+      <servlet-class>be.wishlist.servlets.InvitationUser</servlet-class>
   </servlet>
   
    <servlet>
@@ -146,6 +147,11 @@
   </servlet>
    
   <!-- Servlet Mappings -->
+  
+  <servlet-mapping>
+	<servlet-name>Index</servlet-name>
+	<url-pattern>/</url-pattern>
+  </servlet-mapping>
   
   <servlet-mapping>
 	<servlet-name>Register</servlet-name>
