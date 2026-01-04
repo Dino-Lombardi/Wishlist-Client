@@ -172,4 +172,11 @@ public class User implements Serializable {
 		return giftlists != null;
 	}
 	
+	@Override
+	public String toString() {
+		return "User [iduser=" + iduser + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", username=" + username + ", password=" + password + ", giftlists=" + giftlists
+				+ ", invitations=" + invitations + "]"; 
+	}
+	
 }
