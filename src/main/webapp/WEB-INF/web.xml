@@ -1,14 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+
   <display-name>Wishlist-Client</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.xhtml</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.xhtml</welcome-file>
-  </welcome-file-list>
+  
+  <!-- Page d'erreur pour gérer les exceptions -->
+ 
+	<error-page>
+	    <exception-type>java.lang.Throwable</exception-type>
+	    <location>/errorPage.jsp</location>
+	</error-page>
+
+
+  <!--  Paramètre de session  -->
+  <session-config>
+    <session-timeout>20</session-timeout>
+  </session-config>
+  
+  
+  <!-- Filters -->
+  <filter>
+      <filter-name>ConnectionFilter</filter-name>
+      <filter-class>be.wishlist.filters.ConnectionFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+      <filter-name>ConnectionFilter</filter-name>
+      <servlet-name>Home</servlet-name>
+      <servlet-name>EditGiftList</servlet-name>
+      <servlet-name>CreateGiftList</servlet-name>
+      <servlet-name>DeleteGiftList</servlet-name>
+      <servlet-name>ViewGiftList</servlet-name>
+      <servlet-name>UpdateInvitation</servlet-name>
+      <servlet-name>InvitationUser</servlet-name>
+      <servlet-name>InvitedGiftlist</servlet-name>
+      <servlet-name>AddGift</servlet-name>
+      <servlet-name>EditGift</servlet-name>
+      <servlet-name>DeleteGift</servlet-name>
+      <servlet-name>UpdateGift</servlet-name>
+      <servlet-name>ReserveGift</servlet-name>
+      <servlet-name>ViewReservation</servlet-name>
+      <servlet-name>DeleteReservation</servlet-name>
+      <servlet-name>SendInvitation</servlet-name>
+  </filter-mapping>
+  
+  
+  <!-- Servlets -->
+   <servlet>
+   	  <servlet-name>Index</servlet-name>
+   	  <servlet-class>be.wishlist.servlets.Index</servlet-class>
+   </servlet>
+   
+   
+  <servlet>
+	  <servlet-name>Register</servlet-name>
+	  <servlet-class>be.wishlist.servlets.Register</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>Login</servlet-name>
+      <servlet-class>be.wishlist.servlets.Login</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>Logout</servlet-name>
+      <servlet-class>be.wishlist.servlets.Logout</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>Home</servlet-name>
+      <servlet-class>be.wishlist.servlets.Home</servlet-class>
+  </servlet>
+
+  <servlet> 
+   <servlet-name>EditGiftList</servlet-name>
+   <servlet-class>be.wishlist.servlets.EditGiftList</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	  <servlet-name>CreateGiftList</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.CreateGiftList</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	  <servlet-name>DeleteGiftList</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.DeleteGiftList</servlet-class>
+  </servlet> 
+  
+  <servlet>
+  	  <servlet-name>ViewGiftList</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.ViewGiftList</servlet-class>
+  </servlet>
+  
+  <servlet>
+      <servlet-name>InvitationUser</servlet-name>
+      <servlet-class>be.wishlist.servlets.InvitationUser</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	  <servlet-name>UpdateInvitation</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.UpdateInvitation</servlet-class>
+  </servlet> 
+  
+  <servlet>
+  	  <servlet-name>InvitedGiftlist</servlet-name>
+  	  <servlet-class>be.wishlist.servlets.InvitedGiftlist</servlet-class>
+  </servlet> 
+  
+   <servlet>
+	  <servlet-name>AddGift</servlet-name>
+	  <servlet-class>be.wishlist.servlets.AddGift</servlet-class>
+  </servlet>
+  
+  <servlet>
+  <servlet-name>EditGift</servlet-name>
+  <servlet-class>be.wishlist.servlets.EditGift</servlet-class>
+  </servlet>
+  
+  <servlet>
+  <servlet-name>DeleteGift</servlet-name>
+  <servlet-class>be.wishlist.servlets.DeleteGift</servlet-class>
+  </servlet>
+  
+   <servlet>
+  <servlet-name>UpdateGift</servlet-name>
+  <servlet-class>be.wishlist.servlets.UpdateGift</servlet-class>
+  </servlet>
+  
+   <servlet>
+  <servlet-name>ReserveGift</servlet-name>
+  <servlet-class>be.wishlist.servlets.ReserveGift</servlet-class>
+  </servlet>
+   
+    <servlet>
+  <servlet-name>ViewReservation</servlet-name>
+  <servlet-class>be.wishlist.servlets.ViewReservation</servlet-class>
+  </servlet>
+  
+   <servlet>
+  <servlet-name>DeleteReservation</servlet-name>
+  <servlet-class>be.wishlist.servlets.DeleteReservation</servlet-class>
+  </servlet>
+  
+   <servlet>
+  <servlet-name>SendInvitation</servlet-name>
+  <servlet-class>be.wishlist.servlets.SendInvitation</servlet-class>
+  </servlet>
+   
+  <!-- Servlet Mappings -->
+  
+  <servlet-mapping>
+	<servlet-name>Index</servlet-name>
+	<url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+	<servlet-name>Register</servlet-name>
+	<url-pattern>/register</url-pattern>
+	<url-pattern>/inscription</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>Login</servlet-name>
+      <url-pattern>/login</url-pattern>
+      <url-pattern>/connexion</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>Logout</servlet-name>
+      <url-pattern>/logout</url-pattern>
+      <url-pattern>/deconnexion</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+      <servlet-name>Home</servlet-name>
+      <url-pattern>/home</url-pattern>
+      <url-pattern>/accueil</url-pattern>
+  </servlet-mapping>
+   
+  <servlet-mapping>
+    <servlet-name>InvitationUser</servlet-name>
+    <url-pattern>/home/invitationuser</url-pattern>
+    </servlet-mapping>
+    
+  <servlet-mapping>
+  	  <servlet-name>EditGiftList</servlet-name>
+  	  <url-pattern>/home/editgiftlist</url-pattern>
+  	  <url-pattern>/home/modifierlistecadeau</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	  <servlet-name>CreateGiftList</servlet-name>
+  	  <url-pattern>/home/creategiftlist</url-pattern>
+  	  <url-pattern>/home/creerlistecadeau</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	  <servlet-name>DeleteGiftList</servlet-name>
+  	  <url-pattern>/home/deletegiftlist</url-pattern>
+  	  <url-pattern>/home/supprimerlistecadeau</url-pattern>
+  </servlet-mapping>
+   
+  <servlet-mapping>
+  	  <servlet-name>ViewGiftList</servlet-name>
+  	  <url-pattern>/home/viewgiftlist</url-pattern>
+  	  <url-pattern>/home/voirlistecadeau</url-pattern>  	  
+  </servlet-mapping> 
+   
+	<servlet-mapping>
+	<servlet-name>UpdateInvitation</servlet-name>
+	<url-pattern>/home/UpdateInvitation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>InvitedGiftlist</servlet-name>
+	<url-pattern>/home/invitedgiftlist</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>AddGift</servlet-name>
+	<url-pattern>/home/addgift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>EditGift</servlet-name>
+	<url-pattern>/home/editgift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>DeleteGift</servlet-name>
+	<url-pattern>/home/deletegift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>UpdateGift</servlet-name>
+	<url-pattern>/home/updategift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReserveGift</servlet-name>
+	<url-pattern>/home/reservegift</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ViewReservation</servlet-name>
+	<url-pattern>/home/viewreservation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>DeleteReservation</servlet-name>
+	<url-pattern>/home/deletereservation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>SendInvitation</servlet-name>
+	<url-pattern>/home/sendinvitation</url-pattern>
+	</servlet-mapping>
 </web-app>
