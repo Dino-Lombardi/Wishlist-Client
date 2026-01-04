@@ -62,7 +62,9 @@ public class InvitationDAO extends DAO<Invitation>{
 
 	    GiftListStatus status = GiftListStatus.valueOf(json.getString("status"));
 
-	    String sharelink = json.getString("sharelink");
+	    String sharelink = null;
+	    if(!json.isNull("sharelink"))
+	    	sharelink = json.getString("sharelink");
 
 	    JSONObject o = json.getJSONObject("owner");
 	    User owner = new User(o.getInt("idUser"),o.getString("firstname"),o.getString("lastname"),o.getString("username"),o.getString("password"));
