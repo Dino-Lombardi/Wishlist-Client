@@ -3,6 +3,8 @@ package be.wishlist.DAO;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javax.ws.rs.core.MediaType;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,8 +35,7 @@ public class GiftListDAO extends DAO<GiftList> {
 			
 			res = getResource()
 					.path("giftlist")
-	                .header("Content-Type", "application/json;charset=UTF-8")
-					.accept("application/json")
+					.type(MediaType.APPLICATION_JSON)
 					.post(ClientResponse.class, giftlistJSON.toString());
 			
 			if (res.getStatus() == 201) 
@@ -59,7 +60,7 @@ public class GiftListDAO extends DAO<GiftList> {
 			res = getResource()
 					.path("giftlist")
 					.path(String.valueOf(id))
-					.accept("application/json")
+					.type(MediaType.APPLICATION_JSON)
 					.get(ClientResponse.class);
 			
 			if (res.getStatus() == 200) {
@@ -119,7 +120,7 @@ public class GiftListDAO extends DAO<GiftList> {
 				.path("giftlist")
 				.path("user")
 				.path(String.valueOf(id))
-				.accept("application/json")
+				.type(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		
 		if(APIResponse != null) {
@@ -192,7 +193,6 @@ public class GiftListDAO extends DAO<GiftList> {
 					.path("giftlist")
 					.path(String.valueOf(obj.getIdGiftlist()))
 	                .header("Content-Type", "application/json;charset=UTF-8")
-					.accept("application/json")
 					.put(ClientResponse.class, giftlistJSON.toString());
 			
 			if (res.getStatus() == 204) 

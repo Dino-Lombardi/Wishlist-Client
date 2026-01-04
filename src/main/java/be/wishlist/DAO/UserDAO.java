@@ -2,6 +2,8 @@ package be.wishlist.DAO;
 
 import java.util.ArrayList;
 
+import javax.ws.rs.core.MediaType;
+
 import org.json.JSONObject;
 
 import com.sun.jersey.api.client.ClientResponse;
@@ -22,7 +24,7 @@ public class UserDAO extends DAO<User>{
 			userJSON.put("password", obj.getPassword());
 			res = getResource()
 					.path("user")
-					.accept("application/json")
+					.type(MediaType.APPLICATION_JSON)
 					.post(ClientResponse.class, userJSON.toString());
 			
 			if (res.getStatus() == 201) 
@@ -55,7 +57,7 @@ public class UserDAO extends DAO<User>{
 					.path("user")
 					.path("username")
 					.path(String.valueOf(username))
-					.accept("application/json")
+					.type(MediaType.APPLICATION_JSON)
 					.get(ClientResponse.class);
 			
 			if (res.getStatus() == 200) {
@@ -138,7 +140,4 @@ public class UserDAO extends DAO<User>{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-	
-
 }
