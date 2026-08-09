@@ -42,53 +42,49 @@
 
         <% } else { %>
 
-            <table class="table table-bordered table-striped">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Date</th>
-                        <th>Cadeau</th>
-                        <th>Liste</th>
-                        <th>Montant (€)</th>
-                        <th>Type</th>
-                        <th style="width: 140px;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <% for (Reservation r : reservations) { 
-                       Gift g = r.getGift();
-                %>
-                    <tr>
-                        <td><%= r.getReservationDate().format(formatter) %></td>
+			    <table class="table table-bordered table-striped">
+			    <thead class="thead-light">
+			        <tr>
+			            <th>Date</th>
+			            <th>Cadeau</th>
+			            <th>Montant (€)</th>
+			            <th>Type</th>
+			            <th style="width: 140px;">Actions</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			    <% for (Reservation r : reservations) { 
+			           Gift g = r.getGift();
+			    %>
+			        <tr>
+			            <td><%= r.getReservationDate().format(formatter) %></td>
+			
+			            <td>
+			                <strong><%= g.getName() %></strong><br>
+			                <small class="text-muted"><%= g.getDescription() %></small>
+			            </td>
+			
+			            <td><%= String.format("%.2f", r.getAmount()) %></td>
+			
+			            <td>
+			                <% if (r.isIsgrouppurchase()) { %>
+			                    <span class="badge badge-warning">Achat groupé</span>
+			                <% } else { %>
+			                    <span class="badge badge-success">Réservation complète</span>
+			                <% } %>
+			            </td>
+			
+			            <td class="text-center">
+			                <a href="<%= contextPath %>/home/deletereservation?id=<%= r.getId() %>"
+			                   class="btn btn-sm btn-outline-danger">
+			                    <i class="fas fa-trash">Supprimer</i>
+			                </a>
+			            </td>
+			        </tr>
+			    <% } %>
+			    </tbody>
+			</table>
 
-                        <td>
-                            <strong><%= g.getName() %></strong><br>
-                            <small class="text-muted"><%= g.getDescription() %></small>
-                        </td>
-
-                        <td><%= g.getGiftlist().getTitle() %></td>
-
-                        <td><%= String.format("%.2f", r.getAmount()) %></td>
-
-                        <td>
-                            <% if (r.isIsgrouppurchase()) { %>
-                                <span class="badge badge-warning">Achat groupé</span>
-                            <% } else { %>
-                                <span class="badge badge-success">Réservation complète</span>
-                            <% } %>
-                        </td>
-
-                        <td class="text-center">
-
-                            <a href="<%= contextPath %>/home/deletereservation?id=<%= r.getId() %>"
-                               class="btn btn-sm btn-outline-danger">
-                                <i class="fas fa-trash">Supprimer</i>
-                            </a>
-
-                        </td>
-                    </tr>
-                <% } %>
-                </tbody>
-            </table>
 
         <% } %>
 
